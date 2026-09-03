@@ -1,0 +1,402 @@
+/* ---------------------------------------------
+   Tokens
+--------------------------------------------- */
+:root {
+  --navy:        #14213D;
+  --navy-deep:   #0F1930;
+  --paper:       #EFE9DC;
+  --chalk:       #F3F0E8;
+  --line:        #5C7A99;
+  --line-soft:   rgba(92, 122, 153, 0.35);
+  --amber:       #E8A33D;
+  --muted:       #8FA0B3;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  --max-w: 780px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--navy);
+  color: var(--chalk);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* ---------------------------------------------
+   Blueprint grid overlay
+--------------------------------------------- */
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.18;
+}
+
+/* ---------------------------------------------
+   Header
+--------------------------------------------- */
+.site-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 32px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.mark {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--chalk);
+  text-decoration: none;
+  border: 1px solid var(--line-soft);
+  padding: 6px 10px;
+  letter-spacing: 0.02em;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 28px;
+}
+
+.site-header nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.15s ease;
+}
+
+.site-header nav a:hover,
+.site-header nav a:focus-visible {
+  color: var(--chalk);
+}
+
+/* ---------------------------------------------
+   Layout helpers
+--------------------------------------------- */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 96px 32px;
+}
+
+.section-head {
+  max-width: var(--max-w);
+  margin-bottom: 48px;
+}
+
+.section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 2rem;
+  margin: 0 0 12px;
+}
+
+.section-head p {
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0;
+}
+
+/* ---------------------------------------------
+   Hero
+--------------------------------------------- */
+.hero {
+  padding-top: 120px;
+  padding-bottom: 88px;
+}
+
+.hero-coord {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--line);
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1.12;
+  max-width: 760px;
+  margin: 0 0 24px;
+}
+
+.hero-sub {
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin: 0 0 40px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-ghost {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 12px 22px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--amber);
+  color: var(--navy-deep);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: #f0b258;
+}
+
+.btn-ghost {
+  border-color: var(--line-soft);
+  color: var(--chalk);
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  border-color: var(--chalk);
+}
+
+/* ---------------------------------------------
+   Work / project sheets
+--------------------------------------------- */
+.sheet {
+  position: relative;
+  border: 1px solid var(--line-soft);
+  padding: 32px;
+  margin-bottom: 24px;
+  max-width: var(--max-w);
+  transition: border-color 0.15s ease;
+}
+
+.sheet:hover {
+  border-color: var(--line);
+}
+
+.tick {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--line);
+}
+
+.tick.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.tick.tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+.tick.bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+.tick.br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.sheet-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--line);
+  margin-bottom: 12px;
+}
+
+.sheet h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.4rem;
+  margin: 0 0 12px;
+}
+
+.sheet p {
+  color: var(--muted);
+  margin: 0 0 20px;
+  max-width: 60ch;
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.tags span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--line);
+  border: 1px solid var(--line-soft);
+  padding: 4px 8px;
+}
+
+.sheet-link {
+  color: var(--amber);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.sheet-link:hover,
+.sheet-link:focus-visible {
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------
+   About
+--------------------------------------------- */
+.about {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.about-figure {
+  color: var(--line);
+}
+
+.blueprint-diagram {
+  width: 100%;
+  height: auto;
+}
+
+.about-text p {
+  max-width: var(--max-w);
+  color: var(--chalk);
+  margin: 0 0 20px;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------
+   Contact / legend
+--------------------------------------------- */
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: var(--max-w);
+  border-top: 1px solid var(--line-soft);
+}
+
+.legend li {
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.legend a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 20px 4px;
+  text-decoration: none;
+  color: var(--chalk);
+  transition: color 0.15s ease, padding-left 0.15s ease;
+}
+
+.legend a:hover,
+.legend a:focus-visible {
+  color: var(--amber);
+  padding-left: 12px;
+}
+
+.legend-label {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+
+.legend-value {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.legend a:hover .legend-value,
+.legend a:focus-visible .legend-value {
+  color: var(--amber);
+}
+
+/* ---------------------------------------------
+   Footer
+--------------------------------------------- */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line-soft);
+}
+
+/* ---------------------------------------------
+   Focus visibility (accessibility)
+--------------------------------------------- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------
+   Responsive
+--------------------------------------------- */
+@media (max-width: 720px) {
+  .site-header {
+    padding: 22px 20px;
+  }
+
+  section {
+    padding: 64px 20px;
+  }
+
+  .hero {
+    padding-top: 88px;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .about-figure {
+    width: 120px;
+  }
+
+  .site-footer {
+    padding: 24px 20px;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
